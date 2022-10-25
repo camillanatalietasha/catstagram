@@ -25,6 +25,6 @@ const fetchImg = async () => {
 window.onload = () => {
     document.body.style.backgroundColor = "red";
     createEls();
-    const img = awfetchImg();
+    fetchImg();
     appendItems(mainDiv, header, img);
 }
