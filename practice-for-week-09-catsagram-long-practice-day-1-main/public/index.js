@@ -1,16 +1,25 @@
 // Your code here
 
-// cb functions
+window.onload = async() => {
+    document.body.style.backgroundColor = "red";
+    const imgUrl = await fetchImg();
+    createEls(imgUrl);
+}
 
-const createEls = () => {
+// cb functions
+const createEls = (imgUrl) => {
     const header = document.createElement('h1');
-    header.innerText = "Kitten Pic"
     const mainDiv = document.createElement('div');
     const img = document.createElement("img")
+    header.innerText = "Kitten Pic"
+    img.setAttribute("src", imgUrl)
+    appendItems(mainDiv, header, img);
 }
 
 const appendItems = (parent, ...params) => {
+    const body = document.querySelector("body");
     parent.append(...params);
+    body.append(parent);
 }
 
 const fetchImg = async () => {
@@ -19,12 +28,4 @@ const fetchImg = async () => {
     console.log(data)
     const img = data[0].url;
     return img;
-}
-
-
-window.onload = () => {
-    document.body.style.backgroundColor = "red";
-    createEls();
-    const img = awfetchImg();
-    appendItems(mainDiv, header, img);
 }
