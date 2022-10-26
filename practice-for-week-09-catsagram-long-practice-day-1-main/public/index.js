@@ -19,6 +19,13 @@ window.onload = async() => {
         commentLi.innerText = commentInput.value;
         commentUl.append(commentLi);
     })
+    //add & subtract score
+    plusSign.addEventListener("click", () => {
+        addScore();
+    })
+    minusSign.addEventListener("click", () => {
+        subtractScore();
+    })
 }
 
 // cb functions
@@ -26,31 +33,51 @@ const createEls = (imgUrl) => {
     const mainDiv = document.createElement('div');
     const imgDiv = document.createElement("div");
     const commentDiv = document.createElement("div");
+    const likesDiv = document.createElement("div")
     const header = document.createElement('h1');
     const img = document.createElement("img");
     const imgButton = document.createElement("button");
     const commentButton = document.createElement("button")
     const commentInput = document.createElement("textarea")
     const commentUl = document.createElement("ul")
+    const plusSign = document.createElement("button")
+    const minusSign = document.createElement("button")
+    const score = document.createElement("p")
+
+
+
+
     //set id
     header.setAttribute("id", "header");
     mainDiv.setAttribute("id", "mainDiv");
     img.setAttribute("id", "img");
     imgDiv.setAttribute("id", "imgDiv");
+    likesDiv.setAttribute("id", "likesDiv");
     imgButton.setAttribute("id", "imgButton");
     commentButton.setAttribute("id", "commentButton");
     commentInput.setAttribute("id", "commentInput");
     commentDiv.setAttribute("id", "commentDiv");
     commentUl.setAttribute("id", "commentUl");
-    
+    plusSign.setAttribute("id", "plusSign");
+    minusSign.setAttribute("id", "minusSign");
+    score.setAttribute("id", "score");
+    plusSign.setAttribute("class", "voters");
+    minusSign.setAttribute("class", "voters");
+
+
+
     header.innerText = "Kitten Pic"
     imgButton.innerText = "New Kitten"
     commentButton.innerText = "Submit Comment"
+    plusSign.innerText = "+";
+    score.innerText = "0"
+    minusSign.innerText = "-"
     img.setAttribute("src", imgUrl);
     // imgDiv.append(img, imgButton);
     appendItems(imgDiv, img, imgButton);
-    appendItems(mainDiv, header, imgDiv);
+    appendItems(likesDiv, plusSign, score, minusSign);
     appendItems(commentDiv, commentButton, commentInput, commentUl);
+    appendItems(mainDiv, header, imgDiv, likesDiv, commentDiv);
 
     const cssFunc = () => {
         // mainDiv.style.display = "flex";
@@ -90,4 +117,11 @@ const fetchImg = async () => {
     console.log(data)
     const img = data[0].url;
     return img;
+}
+
+const addScore = () => {
+    score.innerText = +score.innerText + 1;
+}
+const subtractScore = () => {
+    score.innerText = +score.innerText - 1;
 }
