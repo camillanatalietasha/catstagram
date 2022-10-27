@@ -2,15 +2,21 @@
 
 window.onload = async () => {
   document.body.style.backgroundColor = "skyblue";
-  let imgUrl = await fetchImg();
-  createEls(imgUrl);
 
+  if (localStorage.getItem("img")) {
+    let url = localStorage.getItem("img");
+    createEls(url);
+  } else {
+    let imgUrl = await fetchImg();
+    localStorage.setItem("img", imgUrl);
+    createEls(imgUrl);
+  }
   // append existing comments to ul
   if (localStorage.getItem("commentsArray")) {
     const currCommentsArray = JSON.parse(localStorage.getItem("commentsArray"));
     for (let i = 0; i < currCommentsArray.length; i++) {
       const commentLi = document.createElement("li");
-      let commentsArray = [];
+      //   let commentsArray = [];
       let commentId = commentUl.children.length + 1;
       commentLi.setAttribute("id", commentId);
       commentLi.innerText = currCommentsArray[i];
@@ -21,8 +27,9 @@ window.onload = async () => {
 
   // new kitten button
   imgButton.addEventListener("click", async () => {
-    imgUrl = await fetchImg();
+    let imgUrl = await fetchImg();
     img.setAttribute("src", imgUrl);
+    localStorage.setItem("img", imgUrl);
   });
 
   // add a comment
@@ -39,7 +46,7 @@ window.onload = async () => {
     }
     commentsArray.push(commentInput.value);
     localStorage.setItem("commentsArray", JSON.stringify(commentsArray));
-    console.log(localStorage.getItem("commentsArray"));
+    // console.log(localStorage.getItem("commentsArray"));
 
     commentUl.append(commentLi);
   });
@@ -69,6 +76,7 @@ const createEls = (imgUrl) => {
   const minusSign = document.createElement("button");
   const score = document.createElement("p");
   const commentHeader = document.createElement("p");
+  const deleteComments = document.createElement("button");
 
   //set id
   header.setAttribute("id", "header");
@@ -87,6 +95,7 @@ const createEls = (imgUrl) => {
   plusSign.setAttribute("class", "voters");
   minusSign.setAttribute("class", "voters");
   commentHeader.setAttribute("id", "commentHeader");
+  deleteComments.setAttribute("id", "deleteComments");
 
   header.innerText = "Kitten Pic";
   imgButton.innerText = "New Kitten";
@@ -108,27 +117,27 @@ const createEls = (imgUrl) => {
   );
   appendItems(mainDiv, header, imgDiv, commentDiv);
 
-  const cssFunc = () => {
-    // mainDiv.style.display = "flex";
-    // mainDiv.style.justifyContent = "center";
-    // mainDiv.style.flexDirection = "column";
-    // mainDiv.style.alignItems= "center";
-    // header.style.margin = "20px";
-    // img.style.width = "50%";
-    // img.style.height = "50%";
-    // imgDiv.style.display = "flex";
-    // imgDiv.style.justifyContent = "center";
-    // imgDiv.style.alignItems = "center";
-    // imgDiv.style.width = "800px"
-    // imgDiv.style.height = "800px"
-    // imgButton.style.width = "150px";
-    // imgButton.style.height = "50px"
-    // commentButton.style.width = "150px";
-    // commentButton.style.height = "50px"
-    // img.style.objectFit = "contain"
-    // img.style.padding = "10%"
-  };
-  cssFunc();
+//   const cssFunc = () => {
+//     // mainDiv.style.display = "flex";
+//     // mainDiv.style.justifyContent = "center";
+//     // mainDiv.style.flexDirection = "column";
+//     // mainDiv.style.alignItems= "center";
+//     // header.style.margin = "20px";
+//     // img.style.width = "50%";
+//     // img.style.height = "50%";
+//     // imgDiv.style.display = "flex";
+//     // imgDiv.style.justifyContent = "center";
+//     // imgDiv.style.alignItems = "center";
+//     // imgDiv.style.width = "800px"
+//     // imgDiv.style.height = "800px"
+//     // imgButton.style.width = "150px";
+//     // imgButton.style.height = "50px"
+//     // commentButton.style.width = "150px";
+//     // commentButton.style.height = "50px"
+//     // img.style.objectFit = "contain"
+//     // img.style.padding = "10%"
+//   };
+//   cssFunc();
 };
 
 const appendItems = (parent, ...params) => {
