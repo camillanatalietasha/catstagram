@@ -1,5 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,800;1,400&family=Nanum+Myeongjo&family=Petit+Formal+Script&display=swap');
+
+/* 
+font-family: 'Montserrat', sans-serif;
+font-family: 'Nanum Myeongjo', serif;
+*/
+
 * {
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #333b35;
+    }
+
+body {
+    background-color: #D1E0F0;
 }
 
 #mainDiv {
@@ -22,18 +35,28 @@ button {
     cursor: pointer;
     width: 150px;
     height: 30;
-    padding: 10px;
-    background-color: darkgray;
     font-size: 15px;
+    text-align: center;
+    /* background-color: darkgray;
     box-shadow: 5px 5px 4px black;
     margin: 10px;
+    padding: 10px; */
+    background-color: #fbeee0;
+    border: 2px solid #333b35;
+    border-radius: 30px;
+    box-shadow: #333b35 4px 4px 0 0;
+    color: #333b35;
+    text-decoration: none;
 
 }
 
+
+
 #header {
     grid-area: header;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:xx-large;
+    font-size: 80px;
+    color: #333b35;
+    text-shadow: 2px 2px 1px #B8A38E;
 }
 
 #imgDiv {
@@ -55,7 +78,8 @@ button {
     height: 300px;
     width: 300px;
     border-radius: 500px;
-    margin: 40px 40px 0px 40px
+    margin: 40px 40px 0px 40px;
+
 }
 
 #plusSign {
@@ -94,24 +118,30 @@ button {
     padding-right: 25px;
     margin: 10px; 
     border-radius: 50px;
-    background-color: lightgray;
+    background-color: rgba(184, 163, 142);
     text-align: left;
     line-height: 10px;
     box-sizing: border-box;
+    border: 3px solid #B8A38E;
 
     /* overflow: auto; */
 } 
+
+#commentInput:focus {
+    border: 5px solid #333b35;
+}
 
 ul {
     min-height: 300px;
     min-width: 600px;
     max-width: 90%;
-    border: 5px solid black;
+    border: 5px solid #333b35;
     padding: 10px;
     list-style: none;
     height: fit-content;
     width: fit-content;
     border-radius: 20px;
+    background-color: #B8A38E;
 }
 
 li {

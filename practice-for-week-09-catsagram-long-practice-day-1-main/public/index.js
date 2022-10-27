@@ -1,7 +1,7 @@
 // Your code here
 
 window.onload = async () => {
-  document.body.style.backgroundColor = "skyblue";
+
   let imgUrl = await fetchImg();
   createEls(imgUrl);
 
